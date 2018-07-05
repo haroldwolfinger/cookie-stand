@@ -2,7 +2,7 @@
 This repo contains work for lecture-06 and lecture-07 
 
 ## lecture-06
-Updated the main.js file to include FOR LOOPs to calculate avgSales and daily cookies sold for each store location; however, daily cookies sold are not totalling correctly in the concatenated string within the console.log statements for each location (although location works fine).
+The main.js file includes FOR LOOPs to calculate avgSales and daily cookies sold for each store location; however, content is not being pushed correctly to the sales.html file. Daily cookies sold are tallied correctly in the concatenated string within the console.log statements; they are listed first by each location, and then as the total aggregate sold.
 
 ---
 ### CodePartners Assignment Overview: Lab 6

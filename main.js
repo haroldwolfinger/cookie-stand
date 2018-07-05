@@ -110,3 +110,10 @@ console.log("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesF
 // All locations aggregated
 let dailyCookiesSoldAll = dailyCookiesOne + dailyCookiesTwo + dailyCookiesThree + dailyCookiesFour + dailyCookiesFive
 console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
+
+// Writing to sales.html
+document.writeln("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne);
+document.writeln("Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo);
+document.writeln("Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree); 
+document.writeln("Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour);
+document.writeln("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesFive); 
