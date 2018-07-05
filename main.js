@@ -111,9 +111,52 @@ console.log("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesF
 let dailyCookiesSoldAll = dailyCookiesOne + dailyCookiesTwo + dailyCookiesThree + dailyCookiesFour + dailyCookiesFive
 console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
 
-// Writing to sales.html
-document.writeln("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne);
-document.writeln("Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo);
-document.writeln("Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree); 
-document.writeln("Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour);
-document.writeln("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesFive); 
+// Writing to sales.html using the document.writeln function (doesn't work properly)
+    // document.writeln("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne);
+    // document.writeln("Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo);
+    // document.writeln("Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree);
+    // document.writeln("Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour);
+    // document.writeln("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesFive); 
+
+// select the element and store it in a variable (Duckett, JavaScript & jQuery, p195)
+// note: this block didn't work
+    // var itemOne = document.getElementByID('one');
+    // var itemTwo = document.getElementByID('two');
+    // var itemThree = document.getElementByID('three');
+    // var itemFour = document.getElementByID('four');
+    // var itemFive = document.getElementByID('five');
+
+// access & change the FIRST text node (Duckett, JavaScript & jQuery, p215)
+
+var itemOne = document.getElementById('one');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('Store 1', "Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne);
+itemOne.firstChild.nodeValue = elText;
+
+// access & change the SECOND-FIFTH text node
+var itemTwo = document.getElementById('two');
+var elText = itemTwo.firstChild.nodeValue;
+elText = elText.replace('Store 2', "Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo);
+itemTwo.firstChild.nodeValue = elText;
+
+var itemThree = document.getElementById('three');
+var elText = itemThree.firstChild.nodeValue;
+elText = elText.replace('Store 3', "Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree);
+itemThree.firstChild.nodeValue = elText;
+
+var itemFour = document.getElementById('four');
+var elText = itemFour.firstChild.nodeValue;
+elText = elText.replace('Store 4', "Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour);
+itemFour.firstChild.nodeValue = elText;
+
+var itemFive = document.getElementById('five');
+var elText = itemFive.firstChild.nodeValue;
+elText = elText.replace('Store 5', "Daily cookies sold at " + storeFive.location + ": " + dailyCookiesFive);
+itemFive.firstChild.nodeValue = elText;
+
+// access & change the TOTAL text node
+var itemTotal = document.getElementById('total');
+var elText = itemTotal.firstChild.nodeValue;
+elText = elText.replace('Total cookies sold across all locations', "Daily cookies sold across all the above locations: " + dailyCookiesSoldAll);
+itemTotal.firstChild.nodeValue = elText;
+
