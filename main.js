@@ -2,7 +2,7 @@
 // Added opening (6AM) and closing (8PM) hours
 
 let Store = function(location, open, close, minCust, maxCust, avgCookies) {
-    this.location = name;
+    this.location = location;
     this.open = open;
     this.close = close;
     this.minCust = minCust;
@@ -18,23 +18,75 @@ let storeArray = []
 storeArray.push(storeOne)
 console.log(storeOne)
 
-// Now, let's create a FOR LOOP to calculate each hour of sales per day from opening to close    
-let hourlySales;
-let dailyCookiesOne = 0;
-for (hourlySales = storeOne.open; hourlySales < storeOne.close; hourlySales++) { 
-    // Calculate avgSales during a specific hour
-    let avgSales = Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies);
-    console.log(hourlySales + "'o clock sales (during the hour): " + avgSales)
-    // Calculate running tally of cookies sold
-    dailyCookiesOne = dailyCookiesOne + avgSales
-    console.log("Daily cookies sold as of " + (hourlySales+1) + " are this number: " + dailyCookiesOne)
-    }
-console.log("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne)
+// Now, let's create another object using constructor notation, this time to capture hourly sales
+let Sales = function(s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20) {
+    this.s0600 = s06
+    this.s0700 = s07
+    this.s0800 = s08
+    this.s0900 = s09
+    this.s1000 = s10
+    this.s1100 = s11
+    this.s1200 = s12
+    this.s1300 = s13
+    this.s1400 = s14
+    this.s1500 = s15
+    this.s1600 = s16
+    this.s1700 = s17
+    this.s1800 = s18
+    this.s1900 = s19
+    this.s2000 = s20
+}
+
+let dailyCookiesOne = 0
+let salesOne = new Sales(
+    // s06
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s07
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s08
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s09
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s10
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s11
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s12
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s13
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s14
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s15
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s16
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s17
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s18
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s19
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s20
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies))
+
+let salesArray = []
+salesArray.push(salesOne)
+console.log(salesOne)
+
+// Sum the hourly sales into one dailyCookiesOne variable
+// The long way
+    //dailyCookiesOne = salesOne.s0600 + salesOne.s0700 + salesOne.s0800 + salesOne.s0900 + salesOne.s1000 + salesOne.s1100 + salesOne.s1200 + salesOne.s1300 + salesOne.s1400 + salesOne.s1500 + salesOne.s1600 + salesOne.s1700 + salesOne.s1800 + salesOne.s1900 + salesOne.s2000
+
+// Sum the hourly sales into one dailyCookiesOne variable using a FOR LOOP
+for (i = salesOne.s0600; i < salesOne.s2000; i++) {
+    dailyCookiesOne = dailyCookiesOne + i
+}
 
 // Creating an object for the second, third, fourth, and fifth store
 let storeTwo = new Store("SeaTac Airport", 6, 20, 3, 24, 1.2)
 storeArray.push(storeTwo)
-console.log(storeTwo)
+console.log(storeTwo) 
 
 // Adding the FOR LOOP to calculate avgSales and dailyCookies sold
 // Note: when i first tried to *copy* the code from storeOne, i received an error: i couldn't declare the same variable twice.  I realized that i could simplify the code from storeOne by just using i as the FOR LOOP variable, but i still had an issue with the dailyCookies sold.  Zach suggested eliminating the word "let", and restarting the count at zero; however, i decided to create separate counts for each store so that i keep totals from each location and enable me to tally my entire empire each day.
