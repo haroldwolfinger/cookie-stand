@@ -1,47 +1,192 @@
-// Creating an object for the first store, and then displaying
+// Creating an object using constructor notation 
 // Added opening (6AM) and closing (8PM) hours
 
-let storeOne = {
-    location:"1st and Pike",
-    open:6,
-    close:20,
-    minCust:23,
-    maxCust:65,
-    avgCookies:6.3
-};
+let Store = function(location, open, close, minCust, maxCust, avgCookies) {
+    this.location = location;
+    this.open = open;
+    this.close = close;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avgCookies = avgCookies;
+}
+
+
+
+// **********************************************
+// *** Beginning of code for first store instance
+
+
+// Create an instance of the first store
+let storeOne = new Store("1st and Pike", 6, 20, 23, 65, 6.3)
+
+// Push the instance of the first store
+let storeArray = []
+storeArray.push(storeOne)
 console.log(storeOne)
 
-// Adding a math.random function to come up with avgSales for 6AM-7AM
-// let avgSales = (Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies;
-// console.log(avgSales)
+// Now, let's create another object using constructor notation, this time to capture hourly sales
+let Sales = function(s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19) {
+    this.s0600 = s06
+    this.s0700 = s07
+    this.s0800 = s08
+    this.s0900 = s09
+    this.s1000 = s10
+    this.s1100 = s11
+    this.s1200 = s12
+    this.s1300 = s13
+    this.s1400 = s14
+    this.s1500 = s15
+    this.s1600 = s16
+    this.s1700 = s17
+    this.s1800 = s18
+    this.s1900 = s19
+  }
 
-//     // Round to the nearest cookie
-//     console.log("6AM: " + Math.round(avgSales) + " cookies sold")
+let salesOne = new Sales(
+    // s06
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s07
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s08
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s09
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s10
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s11
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s12
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s13
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s14
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s15
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s16
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s17
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s18
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies), 
+    // s19
+    Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies)) 
+    
+let salesArray = []
+salesArray.push(salesOne)
+console.log(salesOne)
 
-// Now, let's create a FOR LOOP to calculate each hour of sales per day from opening to close    
-let hourlySales;
-let dailyCookiesOne = 0;
-for (hourlySales = storeOne.open; hourlySales < storeOne.close; hourlySales++) { 
-    // Calculate avgSales during a specific hour
-    let avgSales = Math.round((Math.floor(Math.random() * (storeOne.maxCust - storeOne.minCust + 1) )+ storeOne.minCust) * storeOne.avgCookies);
-    console.log(hourlySales + "'o clock sales (during the hour): " + avgSales)
-    // Calculate running tally of cookies sold
-    dailyCookiesOne = dailyCookiesOne + avgSales
-    console.log("Daily cookies sold as of " + (hourlySales+1) + " are this number: " + dailyCookiesOne)
-    }
-console.log("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne)
+// *********************PLEASE NOTE - FIRST ATTEMPT*********************
+// Sum the hourly sales into one dailyCookiesOne variable - The long way
+let dailyCookiesOne = (salesOne.s0600 + salesOne.s0700 + salesOne.s0800 + salesOne.s0900 + salesOne.s1000 + salesOne.s1100 + salesOne.s1200 + salesOne.s1300 + salesOne.s1400 + salesOne.s1500 + salesOne.s1600 + salesOne.s1700 + salesOne.s1800 + salesOne.s1900)
+// *********************************************************************
+
+// *********************REFACTORING THIS PROBLEM (WOULDN'T WORK FOR ME)*********************
+// Sum the hourly sales into one dailyCookiesOne variable using a FOR LOOP - A shorter way
+// First, create a variable that accumulates daily total sales
+// let dailyCookiesOne = 0
+
+// Second, sum the hourly sales into one dailyCookiesOne variable using a FOR LOOP
+// for (i = salesOne[0]; i < salesOne.s2000; i++) {
+//    dailyCookiesOne = dailyCookiesOne + i
+// }
+// *****************************************************************************************
+
+// Now, let's dynamically populate the HTML using the JavaScript variables
+
+// access & change the text nodes in the first instance of the table rows (Duckett, JavaScript & jQuery, p215)
+var itemOne = document.getElementById('s1_row');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('Store1', storeOne.location);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_0600');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s0600);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_0700');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s0700);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_0800');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s0800);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_0900');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s0900);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1000');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1000);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1100');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1100);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1200');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1200);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1300');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1300);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1400');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1400);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1500');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1500);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1600');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1600);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1700');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1700);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1800');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1800);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_1900');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', salesOne.s1900);
+itemOne.firstChild.nodeValue = elText;
+
+var itemOne = document.getElementById('s1_total');
+var elText = itemOne.firstChild.nodeValue; 
+elText = elText.replace('0', dailyCookiesOne);
+itemOne.firstChild.nodeValue = elText;
+
+// access & change the text node for the total cookies sold
+
+
+// *** End of code for first store instance
+// ****************************************
+
+
 
 // Creating an object for the second, third, fourth, and fifth store
-
-let storeTwo = {
-    location:"SeaTac Airport",
-    open:6,
-    close:20,
-    minCust:3,
-    maxCust:24,
-    avgCookies:1.2
-};
-console.log(storeTwo)
+let storeTwo = new Store("SeaTac Airport", 6, 20, 3, 24, 1.2)
+storeArray.push(storeTwo)
+console.log(storeTwo) 
 
 // Adding the FOR LOOP to calculate avgSales and dailyCookies sold
 // Note: when i first tried to *copy* the code from storeOne, i received an error: i couldn't declare the same variable twice.  I realized that i could simplify the code from storeOne by just using i as the FOR LOOP variable, but i still had an issue with the dailyCookies sold.  Zach suggested eliminating the word "let", and restarting the count at zero; however, i decided to create separate counts for each store so that i keep totals from each location and enable me to tally my entire empire each day.
@@ -55,14 +200,10 @@ for (let i = storeTwo.open; i < storeTwo.close; i++) {
     }
 console.log("Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo)
 
-let storeThree = {
-    location:"Seattle Center",
-    open:6,
-    close:20,
-    minCust:11,
-    maxCust:38,
-    avgCookies:3.7
-};
+let storeThree = new Store("Seattle Center", 6, 20, 11, 38, 3.7)
+storeArray.push(storeThree)
+console.log(storeThree)
+
 let dailyCookiesThree = 0;
 for (let i = storeThree.open; i < storeThree.close; i++) {
     let avgCookies = Math.round((Math.floor(Math.random() * (storeThree.maxCust - storeThree.minCust + 1) ) + storeThree.minCust) * storeThree.avgCookies);
@@ -70,29 +211,21 @@ for (let i = storeThree.open; i < storeThree.close; i++) {
 }
 console.log("Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree)
 
-let storeFour = {
-    location:"Capitol Hill",
-    open:6,
-    close:20,
-    minCust:20,
-    maxCust:38,
-    avgCookies:2.3
-};
+let storeFour = new Store("Capitol Hill", 6, 20, 20, 38, 2.3)
+storeArray.push(storeFour)
+console.log(storeFour)
+
 let dailyCookiesFour = 0;
 for (i = storeFour.open; i < storeFour.close; i++) {
     let avgCookies = Math.round((Math.floor(Math.random() * (storeFour.maxCust - storeFour.minCust + 1) ) + storeFour.minCust) * storeFour.avgCookies);
     dailyCookiesFour = dailyCookiesFour + avgCookies
 }
 console.log("Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour)
-  
-let storeFive = {
-    location:"Alki",
-    open:6,
-    close:20,
-    minCust:2,
-    maxCust:16,
-    avgCookies:4.6
-};
+
+let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6)
+storeArray.push(storeFive)
+console.log(storeFive)
+
 let dailyCookiesFive = 0;
 for (i = storeFive.open; i <storeFive.close; i++) {
     let avgCookies = Math.round((Math.floor(Math.random() * (storeFive.maxCust - storeFive.minCust + 1) ) + storeFive.minCust) * storeFive.avgCookies);
@@ -111,20 +244,8 @@ console.log("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesF
 let dailyCookiesSoldAll = dailyCookiesOne + dailyCookiesTwo + dailyCookiesThree + dailyCookiesFour + dailyCookiesFive
 console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
 
-// Writing to sales.html using the document.writeln function (doesn't work properly)
-    // document.writeln("Daily cookies sold at " + storeOne.location + ": " + dailyCookiesOne);
-    // document.writeln("Daily cookies sold at " + storeTwo.location + ": " + dailyCookiesTwo);
-    // document.writeln("Daily cookies sold at " + storeThree.location + ": " + dailyCookiesThree);
-    // document.writeln("Daily cookies sold at " + storeFour.location + ": " + dailyCookiesFour);
-    // document.writeln("Daily cookies sold at " + storeFive.location + ": " + dailyCookiesFive); 
-
-// select the element and store it in a variable (Duckett, JavaScript & jQuery, p195)
-// note: this block didn't work
-    // var itemOne = document.getElementByID('one');
-    // var itemTwo = document.getElementByID('two');
-    // var itemThree = document.getElementByID('three');
-    // var itemFour = document.getElementByID('four');
-    // var itemFive = document.getElementByID('five');
+// ***********************************************************************
+// Now, let's dynamically populate the HTML using the JavaScript variables
 
 // access & change the FIRST text node (Duckett, JavaScript & jQuery, p215)
 
@@ -159,4 +280,3 @@ var itemTotal = document.getElementById('total');
 var elText = itemTotal.firstChild.nodeValue;
 elText = elText.replace('Total cookies sold across all locations', "Daily cookies sold across all the above locations: " + dailyCookiesSoldAll);
 itemTotal.firstChild.nodeValue = elText;
-
