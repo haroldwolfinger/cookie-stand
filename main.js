@@ -62,21 +62,24 @@ elTable.setAttribute('id', 'id-table')
 // appending the table to the body
 elBody.appendChild(elTable)
 
-// looping through the array
-for (let i = 0; i < storeArray.length; i++) {
-    let elRow = document.createElement('tr') ;
+// create a row for the first instance
+let elRow = document.createElement('tr') ;
     elTable.appendChild(elRow) ; 
-    let elTh = document.createElement('th') ; 
-    elTh.innerText = storeArray[i].location ; 
+    
+// create the row header for the first instance (the location)
+let elTh = document.createElement('th') ; 
+    elTh.innerText = storeOne.location ; 
+    console.log(elTh.innerText)
+    elRow.appendChild(elTh)
 
-    // first attempt at loop inside loop - designed to populate successive columns with each hourly .avgSales
-    // DOESN'T WORK PROPERLY
-    elRow.appendChild(elTh) ; 
-        for (let j = storeOne.open; j < storeOne.close; j++) {
-            let newText = document.createElement('td') ;
-            newText.innerText = storeOne.avgCust[j] ;
-        }
-    }
+// loop through the hourly sales, adding the next hourly sales data to a new column 
+for (let i = 0; i < 14; i++) {
+    // Question for above: why isn't putting a variable, such as i = storeOne.open; i < storeOne.close; i++, working? It's only working when i hardcode in 0 and 14
+    let newText = document.createElement('td') ;
+    newText.innerText = storeOne.avgCust[i] ;
+    // console.log(newText.innerText)
+    elRow.appendChild(newText)
+}
 
 // *** End of code for first store instance
 // ****************************************
@@ -87,20 +90,74 @@ storeArray.push(storeTwo)
 storeTwo.createAvgArray()
 storeTwo.createDailySales()
 
+// Create and insert row, row header, and hourly sales data for second instance
+    elRow = document.createElement('tr') ;
+    elTable.appendChild(elRow) 
+
+    elTh = document.createElement('th') ; 
+    elTh.innerText = storeTwo.location ; 
+    elRow.appendChild(elTh)
+
+for (let i = 0; i < 14; i++) {
+    let newText = document.createElement('td') ;
+    newText.innerText = storeTwo.avgCust[i] ;
+    elRow.appendChild(newText)
+}
+// ***storeThree
 let storeThree = new Store("Seattle Center", 6, 20, 11, 38, 3.7, 0)
 storeArray.push = [storeThree]
 storeThree.createAvgArray()
 storeThree.createDailySales()
 
+// Create and insert row, row header, and hourly sales data for third instance
+    elRow = document.createElement('tr') ;
+    elTable.appendChild(elRow)
+
+    elTh = document.createElement('th') ;
+    elTh.innerText = storeThree.location ;
+    elRow.appendChild(elTh)
+
+for (let i = 0; i < 14; i++) {
+    let newText = document.createElement('td') ;
+    newText.innerText = storeThree.avgCust[i] ;
+    elRow.appendChild(newText)
+}
+// ***storeFour and storeFive
 let storeFour = new Store("Capitol Hill", 6, 20, 20, 38, 2.3, 0)
 storeArray = [storeFour]
 storeFour.createAvgArray()
 storeFour.createDailySales()
 
+    elRow = document.createElement('tr') ;
+    elTable.appendChild(elRow)
+
+    elTh = document.createElement('th') ;
+    elTh.innerText = storeFour.location ;
+    elRow.appendChild(elTh)
+
+for (let i = 0; i < 14; i++) {
+    let newText = document.createElement('td') ;
+    newText.innerText = storeFour.avgCust[i] ;
+    elRow.appendChild(newText)
+}
+
 let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6, 0)
 storeArray = [storeFive]
 storeFive.createAvgArray()
 storeFive.createDailySales()
+    
+    elRow = document.createElement('tr') ;
+    elTable.appendChild(elRow)
+
+    elTh = document.createElement ('th') ;
+    elTh.innerText = storeFive.location ;
+    elRow.appendChild(elTh)
+
+for (let i = 0; i < 14; i++) {
+    let newText = document.createElement('td') ;
+    newText.innerText = storeFive.avgCust[i] ;
+    elRow.appendChild(newText)
+}
 
 // Total sales at each location
 console.log("Daily cookies sold at " + storeOne.location + ": " + storeOne.dailySales)
