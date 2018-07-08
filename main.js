@@ -12,16 +12,20 @@ let Store = function(location, open, close, minCust, maxCust, avgCookies, dailyS
     this.dailySales = dailySales;
     }
 
+
+// Create an array of stores
+let storeArray = []
+
 // **********************************************
-// *** Beginning of code for first store instance
 
-
-// Create an instance of the first store
+// Create instances for each store
 let storeOne = new Store("1st and Pike", 6, 20, 23, 65, 6.3, 0)
+let storeTwo = new Store("SeaTac Airport", 6, 20, 3, 24, 1.2, 0)
+let storeThree = new Store("Seattle Center", 6, 20, 11, 38, 3.7, 0)
+let storeFour = new Store("Capitol Hill", 6, 20, 20, 38, 2.3, 0)
+let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6, 0)
 
-// Push the instance of the first store
-let storeArray = [storeOne]
-console.log(storeOne)
+storeArray.push(storeOne, storeTwo, storeThree, storeFour, storeFive)
 
 // Create an averageSalesArray to capture the hourly sales
 // let averageSalesArray = []
@@ -35,7 +39,10 @@ Store.prototype.createAvgArray = function() {
 }
 
 storeOne.createAvgArray()
-console.log(storeOne.avgCust)
+storeTwo.createAvgArray()
+storeThree.createAvgArray()
+storeFour.createAvgArray()
+storeFive.createAvgArray()
 
 // Create an averageDailySales to capture the sum of all hourly sales (the daily sales)
 
@@ -48,11 +55,13 @@ Store.prototype.createDailySales = function() {
 
 // Call the dailySales function
 storeOne.createDailySales()
-console.log("Daily sales: " + storeOne.dailySales)
-
+storeTwo.createDailySales()
+storeThree.createDailySales()
+storeFour.createDailySales()
+storeFive.createDailySales()
 
 // **********************************************************************************************
-// Now, let's dynamically populate the HTML for the first instance using the JavaScript variables
+// Now, let's dynamically populate the HTML using the JavaScript variables
 let elBody = document.getElementById('salesTable')
 let elTable = document.createElement('table')
 
@@ -62,48 +71,28 @@ elTable.setAttribute('id', 'id-table')
 // appending the table to the body
 elBody.appendChild(elTable)
 
-// looping through the array
-for (let i = 0; i < storeArray.length; i++) {
+// create a row for the first instance
+for (i =0; i <= 5; i++) {
     let elRow = document.createElement('tr') ;
     elTable.appendChild(elRow) ; 
+    
     let elTh = document.createElement('th') ; 
-    elTh.innerText = storeArray[i].location ; 
+        elTh.innerText = storeArray[i].location ; 
+        console.log(elTh.innerText)
+        elRow.appendChild(elTh)
 
-    // first attempt at loop inside loop - designed to populate successive columns with each hourly .avgSales
-    // DOESN'T WORK PROPERLY
-    elRow.appendChild(elTh) ; 
-        for (let j = storeOne.open; j < storeOne.close; j++) {
-            let newText = document.createElement('td') ;
-            newText.innerText = storeOne.avgCust[j] ;
-        }
+// loop through the hourly sales, adding the next hourly sales data to a new column 
+    for (let j = 0; j < 14; j++) {
+        let newText = document.createElement('td') ;
+        newText.innerText = storeArray[i].avgCust[j] ;
+        // console.log(newText.innerText)
+        elRow.appendChild(newText)
     }
+}
 
-// *** End of code for first store instance
-// ****************************************
-
-// Creating an object for the second, third, fourth, and fifth store
-let storeTwo = new Store("SeaTac Airport", 6, 20, 3, 24, 1.2, 0)
-storeArray.push(storeTwo)
-storeTwo.createAvgArray()
-storeTwo.createDailySales()
-
-let storeThree = new Store("Seattle Center", 6, 20, 11, 38, 3.7, 0)
-storeArray.push = [storeThree]
-storeThree.createAvgArray()
-storeThree.createDailySales()
-
-let storeFour = new Store("Capitol Hill", 6, 20, 20, 38, 2.3, 0)
-storeArray = [storeFour]
-storeFour.createAvgArray()
-storeFour.createDailySales()
-
-let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6, 0)
-storeArray = [storeFive]
-storeFive.createAvgArray()
-storeFive.createDailySales()
 
 // Total sales at each location
-console.log("Daily cookies sold at " + storeOne.location + ": " + storeOne.dailySales)
+console.log("Daily cookies sold at " + storeArray[0].location + ": " + storeArray[0].dailySales)
 console.log("Daily cookies sold at " + storeTwo.location + ": " + storeTwo.dailySales)
 console.log("Daily cookies sold at " + storeThree.location + ": " + storeThree.dailySales)
 console.log("Daily cookies sold at " + storeFour.location + ": " + storeFour.dailySales)
