@@ -16,6 +16,9 @@ let Store = function(location, open, close, minCust, maxCust, avgCookies, dailyS
 // Create an array of stores
 let storeArray = []
 
+// Create array of hourly + daily sales
+let hoursArray = ["6:00 AM", "7:00 AM", "8:00AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "Daily Total"];
+
 // **********************************************
 
 // Create instances for each store
@@ -48,7 +51,7 @@ storeFive.createAvgArray()
 
 // Calculate the daily sales and store it
 Store.prototype.createDailySales = function() {
-    for (i = 0; i < this.avgCust.length; i++) {
+    for (i = 0; i < (this.close - this.open); i++) {
          this.dailySales += this.avgCust[i]
     }
 }
@@ -71,8 +74,24 @@ elTable.setAttribute('id', 'id-table')
 // appending the table to the body
 elBody.appendChild(elTable)
 
+// append the header of the table to the body
+    let elRow = document.createElement('tr')
+    elTable.appendChild(elRow) ;
+
+    let elHourHeader = document.createElement('th') ;
+        elRow.appendChild(elHourHeader) ;
+        console.log(elHourHeader.innerText)
+        elRow.appendChild(elHourHeader)
+
+        for (let h = 0; h <= 14; h++) {
+            let newText = document.createElement('td') ;
+            newText.innerText = hoursArray[h] ;
+            // console.log(newText.innerText)
+            elRow.appendChild(newText)
+        }
+
 // create a row for the first instance
-for (i =0; i <= 5; i++) {
+for (i = 0; i <= 5; i++) {
     let elRow = document.createElement('tr') ;
     elTable.appendChild(elRow) ; 
     
@@ -83,13 +102,15 @@ for (i =0; i <= 5; i++) {
 
 // loop through the hourly sales, adding the next hourly sales data to a new column 
     for (let j = 0; j < 14; j++) {
-        let newText = document.createElement('td') ;
-        newText.innerText = storeArray[i].avgCust[j] ;
-        // console.log(newText.innerText)
-        elRow.appendChild(newText)
+            let newText = document.createElement('td') ;
+            newText.innerText = storeArray[i].avgCust[j] ;
+            // console.log(newText.innerText)
+            elRow.appendChild(newText)
     }
+        let newText = document.createElement('td') ;
+        newText.innerText = storeArray[i].dailySales ;
+        elRow.appendChild(newText)
 }
-
 
 // Total sales at each location
 console.log("Daily cookies sold at " + storeArray[0].location + ": " + storeArray[0].dailySales)
@@ -103,37 +124,3 @@ let dailyCookiesSoldAll = storeOne.dailySales + storeTwo.dailySales + storeThree
 console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
 
 // ***********************************************************************
-// Now, let's dynamically populate the HTML using the JavaScript variables
-// access & change the FIRST text node (Duckett, JavaScript & jQuery, p215)
-
-var itemOne = document.getElementById('one');
-var elText = itemOne.firstChild.nodeValue; 
-elText = elText.replace('Store 1', "Daily cookies sold at " + storeOne.location + ": " + storeOne.dailySales);
-itemOne.firstChild.nodeValue = elText;
-
-// access & change the SECOND-FIFTH text node
-var itemTwo = document.getElementById('two');
-var elText = itemTwo.firstChild.nodeValue;
-elText = elText.replace('Store 2', "Daily cookies sold at " + storeTwo.location + ": " + storeTwo.dailySales);
-itemTwo.firstChild.nodeValue = elText;
-
-var itemThree = document.getElementById('three');
-var elText = itemThree.firstChild.nodeValue;
-elText = elText.replace('Store 3', "Daily cookies sold at " + storeThree.location + ": " + storeThree.dailySales);
-itemThree.firstChild.nodeValue = elText;
-
-var itemFour = document.getElementById('four');
-var elText = itemFour.firstChild.nodeValue;
-elText = elText.replace('Store 4', "Daily cookies sold at " + storeFour.location + ": " + storeFour.dailySales);
-itemFour.firstChild.nodeValue = elText;
-
-var itemFive = document.getElementById('five');
-var elText = itemFive.firstChild.nodeValue;
-elText = elText.replace('Store 5', "Daily cookies sold at " + storeFive.location + ": " + storeFive.dailySales);
-itemFive.firstChild.nodeValue = elText;
-
-// access & change the TOTAL text node
-var itemTotal = document.getElementById('total');
-var elText = itemTotal.firstChild.nodeValue;
-elText = elText.replace('Total cookies sold across all locations', "Daily cookies sold across all the above locations: " + dailyCookiesSoldAll);
-itemTotal.firstChild.nodeValue = elText;
