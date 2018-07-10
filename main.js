@@ -91,7 +91,7 @@ elBody.appendChild(elTable)
         }
 
 // create a row for the first instance
-for (i = 0; i <= 5; i++) {
+for (i = 0; i <= storeArray.length - 1; i++) {
     let elRow = document.createElement('tr') ;
     elTable.appendChild(elRow) ; 
     
@@ -113,14 +113,32 @@ for (i = 0; i <= 5; i++) {
 }
 
 // Total sales at each location
-console.log("Daily cookies sold at " + storeArray[0].location + ": " + storeArray[0].dailySales)
-console.log("Daily cookies sold at " + storeTwo.location + ": " + storeTwo.dailySales)
-console.log("Daily cookies sold at " + storeThree.location + ": " + storeThree.dailySales)
-console.log("Daily cookies sold at " + storeFour.location + ": " + storeFour.dailySales)
-console.log("Daily cookies sold at " + storeFive.location + ": " + storeFive.dailySales)
+for (i =0; i < storeArray.length - 1; i++) {
+    console.log("Daily cookies sold at " + storeArray[i].location + ": " + storeArray[i].dailySales) ;
+}
 
 // All locations aggregated
 let dailyCookiesSoldAll = storeOne.dailySales + storeTwo.dailySales + storeThree.dailySales + storeFour.dailySales + storeFive.dailySales
 console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
 
 // ***********************************************************************
+
+// Dynamically populate new store instances using the form built in html
+
+let form = document.getElementById('storeForm') 
+
+// Forms access via names in dot.notation; elements can have elements and IDs; however, you would access that by the document.getElementByID
+
+let storeName = form.location ;
+let storeMinCust = form.minCust ;
+let storeMaxCust = form.maxCust ; 
+let storeAvgCookies = form.avgCookies ;
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault() ;
+    // You need to access the value, which you do by using dot notations (.value)
+    console.log(storeName.value + " " + storeMinCust.value + " " + storeMaxCust.value + " " + storeAvgCookies.value) ;
+})
+
+// First, create the event listener; then, console.log them on the forms
+/* Once js is aware of the values in the fields, then you can send the values to the object constructor to create new instance of object */

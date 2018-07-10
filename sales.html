@@ -2,9 +2,18 @@
       <body>
             <div id="page">
                   <h1 id="header">Pat's Crab Cookies</h1>
-                  <h2>Sales Results</h2>
-                  
+                  <h2>Add New Sales Location</h2>
+                  <p>Sales locations assume standard operating hours 6am-8pm</p> 
             </div>
+                  <form id="storeForm">
+                        <input required name="location"/>Store location<br />
+                        <input required name='minCust' />Minimum customers/hour<br />
+                        <input required name='maxCust' />Maximum customers/hour<br />
+                        <input required name='avgCookies' />Average cookies purchased/customer<br />
+                        <button type='submit'>Submit store</button>
+                  </form>
+            </div>
+            <h2>Sales Results</h2>
             <div id="salesTable"></div>
             
       </body>
