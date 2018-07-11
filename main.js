@@ -136,12 +136,19 @@ let storeAvgCookies = form.avgCookies ;
 
 form.addEventListener('submit', function(event) {
     event.preventDefault() ;
+    // You need to access the value, which you do by using .notation (.value)
     let newStore = new Store(storeName.value, 6, 20, storeMinCust.value, storeMaxCust.value, storeAvgCookies.value, 0)
     storeArray.push(newStore)
-    // You need to access the value, which you do by using .notation (.value)
-   // console.log(storeName.value + " " + storeMinCust.value + " " + storeMaxCust.value + " " + storeAvgCookies.value) ;
+   
+    // Now, append the new store instance to its own row
+        let elRow = document.createElement('tr') ;
+        elTable.appendChild(elRow) ; 
+        
+        let elTh = document.createElement('th') ; 
+            elTh.innerText = storeArray[storeArray.length - 1].location ; 
+            console.log(elTh.innerText)
+            elRow.appendChild(elTh)
+    
     console.log(newStore)
-})
-
-// First, create the event listener; then, console.log them on the forms
-/* Once js is aware of the values in the fields, then you can send the values to the object constructor to create new instance of object */
+    console.log(storeArray.length)
+}) 
