@@ -136,8 +136,11 @@ let storeAvgCookies = form.avgCookies ;
 
 form.addEventListener('submit', function(event) {
     event.preventDefault() ;
-    // You need to access the value, which you do by using dot notations (.value)
-    console.log(storeName.value + " " + storeMinCust.value + " " + storeMaxCust.value + " " + storeAvgCookies.value) ;
+    let newStore = new Store(storeName.value, 6, 20, storeMinCust.value, storeMaxCust.value, storeAvgCookies.value, 0)
+    storeArray.push(newStore)
+    // You need to access the value, which you do by using .notation (.value)
+   // console.log(storeName.value + " " + storeMinCust.value + " " + storeMaxCust.value + " " + storeAvgCookies.value) ;
+    console.log(newStore)
 })
 
 // First, create the event listener; then, console.log them on the forms
