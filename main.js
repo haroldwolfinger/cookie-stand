@@ -106,10 +106,12 @@ for (i = 0; i <= storeArray.length - 1; i++) {
             newText.innerText = storeArray[i].avgCust[j] ;
             // console.log(newText.innerText)
             elRow.appendChild(newText)
+
     }
         let newText = document.createElement('td') ;
         newText.innerText = storeArray[i].dailySales ;
         elRow.appendChild(newText)
+
 }
 
 // Total sales at each location
@@ -139,7 +141,21 @@ form.addEventListener('submit', function(event) {
     // You need to access the value, which you do by using .notation (.value)
     let newStore = new Store(storeName.value, 6, 20, storeMinCust.value, storeMaxCust.value, storeAvgCookies.value, 0)
     storeArray.push(newStore)
-   
+       
+    Store.prototype.createAvgArray = function() {
+        for (let i = newStore.open; i < newStore.close; i++){
+            averageSales = Math.round((Math.floor(Math.random() * (newStore.maxCust - newStore.minCust + 1) )+ newStore.minCust) * newStore.avgCookies) ;
+            newStore.avgCust.push(averageSales) ;
+        }
+    }
+    
+    Store.prototype.createDailySales = function() {
+        for (i = 0; i < (newStore.close - newStore.open); i++) {
+             newStore.dailySales += newStore.avgCust[i]
+        }
+    }
+
+
     // Now, append the new store instance to its own row
         let elRow = document.createElement('tr') ;
         elTable.appendChild(elRow) ; 
@@ -148,7 +164,16 @@ form.addEventListener('submit', function(event) {
             elTh.innerText = storeArray[storeArray.length - 1].location ; 
             console.log(elTh.innerText)
             elRow.appendChild(elTh)
-    
-    console.log(newStore)
-    console.log(storeArray.length)
-}) 
+
+            console.log(newStore)
+            console.log(storeArray.length)        
+
+            for (let j = 0; j < 14; j++) {
+                let newText = document.createElement('td') ;
+                newText.innerText = storeArray[storeArray.length-1].avgCust[j] ;
+                console.log(newText.innerText)
+                elRow.appendChild(newText)
+            }
+            let newText = document.createElement('td') ;
+            newText.innerText = storeArray[storeArray.length-1].dailySales ;
+            elRow.appendChild(newText)})
