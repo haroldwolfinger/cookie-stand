@@ -12,7 +12,6 @@ let Store = function(location, open, close, minCust, maxCust, avgCookies, dailyS
     this.dailySales = dailySales;
     }
 
-
 // Create an array of stores
 let storeArray = []
 
@@ -30,10 +29,7 @@ let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6, 0)
 
 storeArray.push(storeOne, storeTwo, storeThree, storeFour, storeFive)
 
-// Create an averageSalesArray to capture the hourly sales
-// let averageSalesArray = []
-
-// Calculate the hourly sales and push them to the averageSalesArray, using a function called avgArray
+// Calculate the hourly sales and push them to an avgCust array within the Store object, using a function called createAvgArray
 Store.prototype.createAvgArray = function() {
     for (let i = this.open; i < this.close; i++){
         averageSales = Math.round((Math.floor(Math.random() * (this.maxCust - this.minCust + 1) )+ this.minCust) * this.avgCookies) ;
@@ -47,9 +43,7 @@ storeThree.createAvgArray()
 storeFour.createAvgArray()
 storeFive.createAvgArray()
 
-// Create an averageDailySales to capture the sum of all hourly sales (the daily sales)
-
-// Calculate the daily sales and store it
+// Calculate the daily sales (createDailySales) and store it
 Store.prototype.createDailySales = function() {
     for (i = 0; i < (this.close - this.open); i++) {
          this.dailySales += this.avgCust[i]
@@ -86,7 +80,6 @@ elBody.appendChild(elTable)
         for (let h = 0; h <= 14; h++) {
             let newText = document.createElement('td') ;
             newText.innerText = hoursArray[h] ;
-            // console.log(newText.innerText)
             elRow.appendChild(newText)
         }
 
@@ -97,83 +90,59 @@ for (i = 0; i <= storeArray.length - 1; i++) {
     
     let elTh = document.createElement('th') ; 
         elTh.innerText = storeArray[i].location ; 
-        console.log(elTh.innerText)
         elRow.appendChild(elTh)
 
 // loop through the hourly sales, adding the next hourly sales data to a new column 
     for (let j = 0; j < 14; j++) {
             let newText = document.createElement('td') ;
             newText.innerText = storeArray[i].avgCust[j] ;
-            // console.log(newText.innerText)
             elRow.appendChild(newText)
-
     }
         let newText = document.createElement('td') ;
         newText.innerText = storeArray[i].dailySales ;
         elRow.appendChild(newText)
-
 }
-
-// Total sales at each location
-for (i =0; i < storeArray.length - 1; i++) {
-    console.log("Daily cookies sold at " + storeArray[i].location + ": " + storeArray[i].dailySales) ;
-}
-
-// All locations aggregated
-let dailyCookiesSoldAll = storeOne.dailySales + storeTwo.dailySales + storeThree.dailySales + storeFour.dailySales + storeFive.dailySales
-console.log("Total cookies sold across all locations: " + dailyCookiesSoldAll)
 
 // ***********************************************************************
 
 // Dynamically populate new store instances using the form built in html
-
 let form = document.getElementById('storeForm') 
 
-// Forms access via names in dot.notation; elements can have elements and IDs; however, you would access that by the document.getElementByID
-
-let storeName = form.location ;
-let storeMinCust = form.minCust ;
-let storeMaxCust = form.maxCust ; 
-let storeAvgCookies = form.avgCookies ;
+// Access the html (storeForm) via names in dot.notation; elements can have elements and IDs; however, you would access that by the document.getElementByID
+let storeLocation = form.inputLocation ;
+let storeMinCust = form.inputMinCust ;
+let storeMaxCust = form.inputMaxCust ; 
+let storeAvgCookies = form.inputAvgCookies ;
 
 form.addEventListener('submit', function(event) {
     event.preventDefault() ;
-    // You need to access the value, which you do by using .notation (.value)
-    let newStore = new Store(storeName.value, 6, 20, storeMinCust.value, storeMaxCust.value, storeAvgCookies.value, 0)
-    storeArray.push(newStore)
-       
-    Store.prototype.createAvgArray = function() {
-        for (let i = newStore.open; i < newStore.close; i++){
-            averageSales = Math.round((Math.floor(Math.random() * (newStore.maxCust - newStore.minCust + 1) )+ newStore.minCust) * newStore.avgCookies) ;
-            newStore.avgCust.push(averageSales) ;
-        }
+    // Access the values in the html, which you do by using .notation (.value), to create a (new) newStore instance
+    let newStore = new Store(storeLocation.value, 6, 20, storeMinCust.value, storeMaxCust.value, storeAvgCookies.value, 0) ;
+    storeArray.push(newStore) ;
+
+    // Calculate the hourly average sales and the total daily sales
+    newStore.createAvgArray() ;
+    newStore.createDailySales() ;
+    
+    // Create a new row and append it to the table you've already created
+    let elRow = document.createElement('tr') ;
+    elTable.appendChild(elRow) ; 
+        
+    // Append the table header (newStore.location) to the row
+    let elTh = document.createElement('th') ; 
+    elTh.innerText = newStore.location ; 
+    elRow.appendChild(elTh)
+
+    // Run a loop to insert the hourly sales as 'td' into each column
+    for (let j = 0; j < 14; j++) {
+        let newText = document.createElement('td') ;
+        newText.innerText = newStore.avgCust[j] ;
+        elRow.appendChild(newText)
     }
     
-    Store.prototype.createDailySales = function() {
-        for (i = 0; i < (newStore.close - newStore.open); i++) {
-             newStore.dailySales += newStore.avgCust[i]
-        }
-    }
-
-
-    // Now, append the new store instance to its own row
-        let elRow = document.createElement('tr') ;
-        elTable.appendChild(elRow) ; 
-        
-        let elTh = document.createElement('th') ; 
-            elTh.innerText = storeArray[storeArray.length - 1].location ; 
-            console.log(elTh.innerText)
-            elRow.appendChild(elTh)
-
-            console.log(newStore)
-            console.log(storeArray.length)        
-
-            for (let j = 0; j < 14; j++) {
-                let newText = document.createElement('td') ;
-                newText.innerText = storeArray[storeArray.length-1].avgCust[j] ;
-                console.log(newText.innerText)
-                elRow.appendChild(newText)
-            }
-            let newText = document.createElement('td') ;
-            newText.innerText = storeArray[storeArray.length-1].dailySales ;
-            elRow.appendChild(newText)})
+    // Insert the daily sales in the last column
+    let newText = document.createElement('td') ;
+    newText.innerText = newStore.dailySales ;
+    elRow.appendChild(newText)
+    
+})
