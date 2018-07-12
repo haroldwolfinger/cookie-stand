@@ -16,16 +16,16 @@ let Store = function(location, open, close, minCust, maxCust, avgCookies, dailyS
 let storeArray = []
 
 // Create array of hourly + daily sales
-let hoursArray = ["6:00 AM", "7:00 AM", "8:00AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "Daily Total"];
+let hoursArray = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "Daily Total"];
 
 // **********************************************
 
 // Create instances for each store
-let storeOne = new Store("1st and Pike", 6, 20, 23, 65, 6.3, 0)
-let storeTwo = new Store("SeaTac Airport", 6, 20, 3, 24, 1.2, 0)
-let storeThree = new Store("Seattle Center", 6, 20, 11, 38, 3.7, 0)
-let storeFour = new Store("Capitol Hill", 6, 20, 20, 38, 2.3, 0)
-let storeFive = new Store("Alki", 6, 20, 2, 16, 4.6, 0)
+let storeOne = new Store("Bethesda", 6, 20, 23, 65, 6.3, 0)
+let storeTwo = new Store("Silver Spring", 6, 20, 3, 24, 1.2, 0)
+let storeThree = new Store("Dupont Circle", 6, 20, 11, 38, 3.7, 0)
+let storeFour = new Store("Adams Morgan", 6, 20, 20, 38, 2.3, 0)
+let storeFive = new Store("K Street", 6, 20, 2, 16, 4.6, 0)
 
 storeArray.push(storeOne, storeTwo, storeThree, storeFour, storeFive)
 
@@ -75,10 +75,12 @@ elBody.appendChild(elTable)
     let elHourHeader = document.createElement('th') ;
         elRow.appendChild(elHourHeader) ;
         console.log(elHourHeader.innerText)
-        elRow.appendChild(elHourHeader)
+        elRow.appendChild(elHourHeader);
 
+    
         for (let h = 0; h <= 14; h++) {
-            let newText = document.createElement('td') ;
+            let newText = document.createElement('th') ;
+            newText.setAttribute('id', 'hoursRow') ;
             newText.innerText = hoursArray[h] ;
             elRow.appendChild(newText)
         }

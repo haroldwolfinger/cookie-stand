@@ -1,10 +1,21 @@
 <html>
+      <head>
+            <title>Harold's h'alphabet hoagies: Cookie sales projections</title>
+            <link href="main.css" type="text/css", rel="stylesheet" />
+      </head>
       <body>
+            <h2 class="aboutBanner"><a href="index.html">About Us</a></br></h2>
+            <h2 class="locationBanner"><a href="locations.html">Locations</a></br></h2>
+            <h2 class="salesBanner"><a href="sales.html">Sales</a></br></h2>
+
             <div id="page">
-                  <h1 id="header">Pat's Crab Cookies</h1>
-                  <h2>Add New Sales Location</h2>
-                  <p>Sales locations assume standard operating hours 6am-8pm</p> 
+                        <h1 id="header">Harold's h'alphabet hoagies</h1>
+                        <h3>The EFG sandwich per Zagat and other critics</h3> 
+                        <h3 id="ABCs">*** Now featuring our famous ABC cookies! Limited Time Only ***</h3>
+                        <h2>Add New Sales Location</h2>
+                        <p>Sales locations assume standard operating hours 6am-8pm</p> 
             </div>
+            <div class="inputBoxes">
                   <form id="storeForm">
                         <input required name="inputLocation"/>Store location<br />
                         <input required name='inputMinCust' />Minimum customers/hour<br />
@@ -14,7 +25,7 @@
                   </form>
             </div>
             <h2>Sales Results</h2>
-            <div id="salesTable"></div>
+            <div id="salesTable" class="hoursRow"></div>
             
       </body>
       <script src="main.js"></script>
