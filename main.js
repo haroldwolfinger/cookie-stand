@@ -5,8 +5,8 @@ let Store = function(location, open, close, minCust, maxCust, avgCookies, dailyS
     this.location = location;
     this.open = open; // use military time (only hour) for this
     this.close = close; // use military time (only hour) for this
-    this.minCust = minCust;
-    this.maxCust = maxCust;
+    this.minCust = parseInt(minCust);
+    this.maxCust = parseInt(maxCust);
     this.avgCust = [];
     this.avgCookies = avgCookies;
     this.dailySales = dailySales;
@@ -32,7 +32,7 @@ storeArray.push(storeOne, storeTwo, storeThree, storeFour, storeFive)
 // Calculate the hourly sales and push them to an avgCust array within the Store object, using a function called createAvgArray
 Store.prototype.createAvgArray = function() {
     for (let i = this.open; i < this.close; i++){
-        averageSales = Math.round((Math.floor(Math.random() * (this.maxCust - this.minCust + 1) )+ this.minCust) * this.avgCookies) ;
+        averageSales = Math.round((Math.floor(Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust) * this.avgCookies) ;
         this.avgCust.push(averageSales) ;
     }
 }
