@@ -146,5 +146,34 @@ form.addEventListener('submit', function(event) {
     let newText = document.createElement('td') ;
     newText.innerText = newStore.dailySales ;
     elRow.appendChild(newText)
+
+// ***FOOTER BEGINS HERE***
+    let footer = document.createElement('tr')
+    let total = document.createElement('th')
+    footer.appendChild(total)
+
+    function addTotals() {
+    let total = 0
+       for (let i = 0; i < storeArray.length; i++) {
+        total += parseInt(storeArray[i].avgCust) ;
+        console.log("avgCust: " + storeArray[i].avgCust) ;
+        console.log("total (cumulative) total: " + total) ;
+        }   
+    }
+     
+    function createFooter() {
+        let footerRow = document.createElement('tr') ;
+        elTable.appendChild(footerRow) ;
+        footerRow.innerText = "Projected sales" ;
+        
+        for (let j = 0; j <= 14; j++) {
+            let newText = document.createElement('td') ;
+            hourlyTotal = total
+            newText.innerText = hourlyTotal ;
+            footerRow.appendChild(newText) ; 
+        }
+    }
     
+    addTotals()
+    createFooter()
 })

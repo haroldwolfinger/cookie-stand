@@ -5,8 +5,8 @@ body {
 
 
 h1 { 
-    font-family: Helvetica;
-    font-size: 60px;
+    font-family: 'Gaegu', Helvetica;
+    font-size: 72px;
     text-shadow: 1px 1px 3px;
     color: rgb(255, 255, 255);
     background-color: DarkCyan;
@@ -97,6 +97,11 @@ tr:hover {
   }
 
   #hoursRow {
+    font-weight: bold;  
+    font-size: 95%;   
+  }
+  
+  #footerRow {
     font-weight: bold;  
     font-size: 95%;   
   }
