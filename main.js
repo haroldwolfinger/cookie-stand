@@ -1,5 +1,10 @@
-// Creating an object using constructor notation 
-// Added opening (6AM) and closing (8PM) hours
+/*  This is my comment notation:
+    1. This is what i'm doing
+    2. This is why i'm doing this
+    3. Follow he variables from beginning to end */
+
+// 1. I'm creating an object using constructor notation
+// 2. I need to create an object constructor to store various instances
 
 let Store = function(location, open, close, minCust, maxCust, avgCookies, dailySales) {
     this.location = location;
@@ -152,13 +157,13 @@ form.addEventListener('submit', function(event) {
     let total = document.createElement('th')
     footer.appendChild(total)
 
-    function addTotals() {
+    function addTotals(j) {
     let total = 0
-       for (let i = 0; i < storeArray.length; i++) {
-        total += parseInt(storeArray[i].avgCust) ;
-        console.log("avgCust: " + storeArray[i].avgCust) ;
-        console.log("total (cumulative) total: " + total) ;
+       for (let q = 0; q < storeArray.length; q++) {
+        total += parseInt(storeArray[q].avgCust[j]) ;
+        // console.log("avgCust: " + storeArray[i].avgCust) ;
         }   
+        return total
     }
      
     function createFooter() {
@@ -166,14 +171,26 @@ form.addEventListener('submit', function(event) {
         elTable.appendChild(footerRow) ;
         footerRow.innerText = "Projected sales" ;
         
-        for (let j = 0; j <= 14; j++) {
+        // declare a variable dailyTotal to begin accumulating the hourlyTotals into one variable
+        let dailyTotal = 0 ;
+        // run a nested FOR LOOP that increments j++ (the hour)
+        for (let j = 0; j < 14; j++) {
             let newText = document.createElement('td') ;
-            hourlyTotal = total
+            hourlyTotal = addTotals(j);
+            dailyTotal += hourlyTotal ;
+            // console.log(dailyTotal) ;
             newText.innerText = hourlyTotal ;
             footerRow.appendChild(newText) ; 
         }
+
+        newText.innerText = dailyTotal ;
+        footerRow.appendChild(newText) ;
+
+        let newDailyTotal = document.createElement('td') ;
+        console.log(storeArray[storeArray.length - 1].dailySales) ; 
+        newDailyTotal.innerText = storeArray[storeArray.length - 1].dailySales ;
+        footerRow.appendChild(newDailyTotal) ;
     }
-    
-    addTotals()
+
     createFooter()
 })
